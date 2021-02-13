@@ -23,6 +23,7 @@
           aria-describedby="password"
         />
       </div>
+      <p v-if="loginFailed" class="error-message">Something went wrong</p>
       <button type="submit" class="btn btn-primary">Login</button>
     </form>
   </div>
@@ -34,6 +35,7 @@ export default {
   name: 'register',
   data() {
     return {
+      loginFailed: false,
       credentials: {
         email: '',
         password: '',
@@ -43,10 +45,21 @@ export default {
 
   methods: {
     async handleSubmit() {
-      await this.login(this.credentials);
-      this.$router.push('/');
+      this.loginFailed = false;
+      try {
+        await this.login(this.credentials);
+        this.$router.push('/');
+      } catch {
+        this.loginFailed = true;
+      }
     },
     ...mapActions('auth', ['login']),
   },
 };
 </script>
+
+<style scoped>
+.error-message {
+  color: red;
+}
+</style>

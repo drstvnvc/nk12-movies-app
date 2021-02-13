@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Movies from '../views/Movies.vue';
 import Register from '../views/Register.vue';
 import Login from '../views/Login.vue';
+import { globalAuthGuard } from '../guards/authGuard';
 
 Vue.use(VueRouter);
 
@@ -11,6 +12,7 @@ const routes = [
     path: '/movies',
     name: 'Movies',
     component: Movies,
+    meta: { authRequired: true },
   },
   {
     path: '/',
@@ -20,11 +22,13 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register,
+    meta: { guestRequired: true },
   },
   {
     path: '/login',
     name: 'Login',
     component: Login,
+    meta: { guestRequired: true },
   },
   {
     path: '/about',
@@ -42,4 +46,5 @@ const router = new VueRouter({
   routes,
 });
 
+router.beforeEach(globalAuthGuard);
 export default router;

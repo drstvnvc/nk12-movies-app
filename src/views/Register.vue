@@ -45,6 +45,7 @@
           aria-describedby="password_confirmation"
         />
       </div>
+      <p v-if="registerFailed" class="error-message">Something went wrong</p>
       <button type="submit" class="btn btn-primary">Register</button>
     </form>
   </div>
@@ -56,6 +57,7 @@ export default {
   name: 'register',
   data() {
     return {
+      registerFailed: false,
       userData: {
         name: '',
         email: '',
@@ -67,10 +69,20 @@ export default {
 
   methods: {
     async handleSubmit() {
-      await this.register(this.userData);
-      this.$router.push('/');
+      this.registerFailed = false;
+      try {
+        await this.register(this.userData);
+        this.$router.push('/');
+      } catch {
+        this.registerFailed = true;
+      }
     },
     ...mapActions('auth', ['register']),
   },
 };
 </script>
+<style scoped>
+.error-message {
+  color: red;
+}
+</style>
