@@ -26,3 +26,6 @@ class MoviesService extends BaseService {
     return data;
   }
 }
+
+const moviesService = new MoviesService();
+export default moviesService;
