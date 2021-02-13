@@ -1,8 +1,8 @@
 import BaseService from './BaseService';
 
 class MoviesService extends BaseService {
-  async getMovies() {
-    const { data } = await this.http.get('/movies');
+  async getMovies(title) {
+    const { data } = await this.http.get('/movies', { params: { title } });
     return data;
   }
 

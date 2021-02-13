@@ -21,8 +21,14 @@ export default {
   computed: {
     ...mapGetters('movies', ['movies']),
   },
+  methods: {
+    handleMovieDelete(movie) {
+      this.deleteMovie(movie);
+    },
+    ...mapActions('movies', ['deleteMovie']),
+  },
   async beforeRouteEnter(to, from, next) {
-    await store.dispatch('movies/getAll');
+    await store.dispatch('movies/getMovies');
     next();
   },
 };

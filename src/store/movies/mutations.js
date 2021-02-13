@@ -5,4 +5,7 @@ export const mutations = {
   deleteMovie(state, movie) {
     state.movies = state.movies.filter((m) => m.id !== movie.id);
   },
+  setSearchTerm(state, searchTerm) {
+    state.searchTerm = searchTerm;
+  },
 };

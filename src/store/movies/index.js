@@ -6,6 +6,7 @@ const store = {
   namespaced: true,
   state: {
     movies: [],
+    searchTerm: '',
   },
   actions,
   mutations,
