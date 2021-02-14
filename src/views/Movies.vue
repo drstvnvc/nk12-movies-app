@@ -1,8 +1,11 @@
 <template>
   <div>
-    <my-table :items="movies" :columns="['title', 'director', 'genre', 'release_date', 'duration']">
+    <my-table
+      :items="movies"
+      :columns="['title', 'director', 'genre', 'release_date', 'duration', '']"
+    >
       <template slot-scope="slotProps">
-        <movie-row :movie="slotProps.item" />
+        <movie-row :movie="slotProps.item" @movie-delete="handleMovieDelete" />
       </template>
     </my-table>
   </div>

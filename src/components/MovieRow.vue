@@ -5,6 +5,9 @@
     <div class="cell">{{ movie.genre }}</div>
     <div class="cell">{{ movie.release_date }}</div>
     <div class="cell">{{ movie.duration }}</div>
+    <div class="cell">
+      <img @click="handleDelete" src="../assets/icons/delete-icon.svg" width="20" />
+    </div>
   </div>
 </template>
 <script>
